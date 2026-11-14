@@ -1,0 +1,43 @@
+import pandas as pd
+import numpy as np
+
+df=pd.read_csv("emails.csv")
+
+df.head()
+
+df.columns
+
+df.info()
+df.shape
+
+df['Prediction'].value_counts()
+
+x= df.drop(columns=['Prediction','Email No.'])
+y=df['Prediction']
+
+
+from sklearn.model_selection import train_test_split
+x_train , x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+
+knn=KNeighborsClassifier(n_neighbors=5)
+knn.fit(x_train,y_train)
+knn_pred=knn.predict(x_test)
+
+print("accuracy: ",accuracy_score(y_test,knn_pred))
+print("confusion matrix: \n",confusion_matrix(y_test,knn_pred))
+print("classification report: \n",classification_report(y_test,knn_pred))
+
+from sklearn.svm import SVC
+svm=SVC(kernel='linear')
+svm.fit(x_train,y_train)
+svm_pred=svm.predict(x_test)
+
+
+print("accuracy score: ",accuracy_score(y_test,svm_pred))
+print("confusion matrix: \n",confusion_matrix(y_test,svm_pred))
+print("classification report: \n",classification_report(y_test,svm_pred))
+
+

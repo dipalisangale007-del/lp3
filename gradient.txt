@@ -1,0 +1,19 @@
+def gradient_descent(x,learning_rate,iterations):
+    
+    for i in range(iterations):
+        gradient=2*(x+3)
+        
+        x=x-learning_rate*gradient
+        print("iteration:",i+1,"x=",x)
+        
+    return x
+x=2
+learning_rate=0.1
+iterations=15
+
+minimum_x=gradient_descent(x,learning_rate,iterations)
+minimum_y=(minimum_x+3)**2
+
+print("\nLocal Minimum:")
+print("x=",minimum_x)
+print("y=",minimum_y)
