@@ -19,7 +19,7 @@ contract Bank{
     //Withdraw
     function Withdraw() public payable{
         require(accOwner==msg.sender,"You are not an account owner" );
-        require(msg.value > 0,"Withdrawal mponey should be greater than zero");
+        require(msg.value > 0,"Withdrawal money should be greater than zero");
         balance-=msg.value;
     }
 
